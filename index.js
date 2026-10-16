@@ -45,3 +45,35 @@ const bookStore = {
 
 // Write your code here!
 
+// Step 2: Select Title Element and change textContent to match bookStore.name
+const bookStoreTitle = document.querySelector("#header");
+if (bookStoreTitle) {
+  bookStoreTitle.textContent = bookStore.name;
+}
+
+// Step 3: Select the book list container
+const bookList = document.querySelector("#book-list");
+
+// Loop through every book in the bookStore.books property
+bookStore.books.forEach((book) => {
+  // Create elements for each book
+  const bookContainer = document.createElement("li");
+  const bookTitle = document.createElement("h3");
+  const bookAuthor = document.createElement("p");
+  const bookImage = document.createElement("img");
+
+  // Change the textContent/attributes to match book object (using imageUrl)
+  bookTitle.textContent = book.title;
+  bookAuthor.textContent = book.author;
+  bookImage.src = book.imageUrl;
+
+  // Append bookTitle, bookAuthor, and bookImage elements to bookContainer element
+  bookContainer.appendChild(bookTitle);
+  bookContainer.appendChild(bookAuthor);
+  bookContainer.appendChild(bookImage);
+
+  // Append bookContainer element to bookList
+  if (bookList) {
+    bookList.appendChild(bookContainer);
+  }
+});
