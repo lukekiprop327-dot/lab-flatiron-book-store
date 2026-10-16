@@ -45,35 +45,41 @@ const bookStore = {
 
 // Write your code here!
 
-// Step 2: Select Title Element and change textContent to match bookStore.name
+// 1. Select the header element and update its text content
 const bookStoreTitle = document.querySelector("#header");
 if (bookStoreTitle) {
-  bookStoreTitle.textContent = bookStore.name;
+    bookStoreTitle.textContent = bookStore.name;
 }
 
-// Step 3: Select the book list container
+// 2. Select the book list container
 const bookList = document.querySelector("#book-list");
 
-// Loop through every book in the bookStore.books property
-bookStore.books.forEach((book) => {
-  // Create elements for each book
-  const bookContainer = document.createElement("li");
-  const bookTitle = document.createElement("h3");
-  const bookAuthor = document.createElement("p");
-  const bookImage = document.createElement("img");
+if (bookList) {
+    // Remove the placeholder element if present
+    const deleteThis = document.querySelector("#delete-this");
+    if (deleteThis) {
+        deleteThis.remove();
+    }
 
-  // Change the textContent/attributes to match book object (using imageUrl)
-  bookTitle.textContent = book.title;
-  bookAuthor.textContent = book.author;
-  bookImage.src = book.imageUrl;
+    // Loop through every book in the bookStore object
+    bookStore.books.forEach((book) => {
+        // Create elements for each book
+        const bookContainer = document.createElement("li");
+        const bookTitle = document.createElement("h3");
+        const bookAuthor = document.createElement("p");
+        const bookImage = document.createElement("img");
 
-  // Append bookTitle, bookAuthor, and bookImage elements to bookContainer element
-  bookContainer.appendChild(bookTitle);
-  bookContainer.appendChild(bookAuthor);
-  bookContainer.appendChild(bookImage);
+        // Set text content and image attributes
+        bookTitle.textContent = book.title;
+        bookAuthor.textContent = book.author;
+        bookImage.src = book.imageUrl;
 
-  // Append bookContainer element to bookList
-  if (bookList) {
-    bookList.appendChild(bookContainer);
-  }
-});
+        // Append book elements to bookContainer
+        bookContainer.appendChild(bookTitle);
+        bookContainer.appendChild(bookAuthor);
+        bookContainer.appendChild(bookImage);
+
+        // Append bookContainer to bookList
+        bookList.appendChild(bookContainer);
+    });
+}
